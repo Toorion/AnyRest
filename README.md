@@ -50,13 +50,15 @@ And "entity" is the entity to perform the operation on.
     "action":"add",
     "entity":"example",
     "fields": ["Field1", "Field2", "Field3", ["Field4: ["Field4_1", "Field4_2"]]],
-    "values": [1, "Value 1", 1.1, ["DateForField4_1", "DataForField4_2]]
+    "values": [1, "Value 1", 1.1, ["DateForField4_1", "DataForField4_2]],
+    "return": ['*']
 }
 
 ```
 
 Adding the data also required list of fields to add ("fields") and "values" to add
 "fields" and "values" can be nested if your entity support it [^1]
+"return" with Asterisk return all inserted fields with data. List of fields in "return:" also possible
 
 
 ### Update data - action "upd"
@@ -67,12 +69,14 @@ Adding the data also required list of fields to add ("fields") and "values" to a
     "entity":"example",
     "fields": ["Field1", "Field2", "Field3"],
     "values": [2, "Value 2", 2.1],
-    "filter": {"Field1": 1}
+    "filter": {"Field1": 1},
+    "return": ['*']
 }
 
 ```
 
 Update same like add, but required "filter" field for identify which records should be updated
+"return" with Asterisk return all updated fields with data. List of fields in "return:" also possible
 
 
 ### Resolve data - action "get"
@@ -83,6 +87,13 @@ Update same like add, but required "filter" field for identify which records sho
     "entity":"example",
     "fields": ["Field1", "Field2", "Field3", ["Field4: ["Field4_1", "Field4_2"]]],
     "filter": {"Field1": 1},
+}
+
+{
+    "action":"get",
+    "entity":"example",
+    "fields": ["*"],
+    "filter": {"Field1": 1},
     "limit": 20,
     "offset": 20
 }
@@ -91,6 +102,7 @@ Update same like add, but required "filter" field for identify which records sho
 
 Resolving fields required only list of returned "fields" and "filter"
 Fields in list can be nested, if "entity" support it [^1]
+Asterisk in "fields" same possible - it should return all fields of first level of entity
 For pagination request "limit" and "offset" is allowed
 
 ### Delete records - action "del"
