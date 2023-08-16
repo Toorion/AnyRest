@@ -95,7 +95,8 @@ Update same like add, but required "filter" field for identify which records sho
     "fields": ["*"],
     "filter": {"Field1": 1},
     "limit": 20,
-    "offset": 20
+    "offset": 20,
+    "order": "main"
 }
 
 ```
@@ -104,6 +105,7 @@ Resolving fields required only list of returned "fields" and "filter"
 Fields in list can be nested, if "entity" support it [^1]
 Asterisk in "fields" same possible - it should return all fields of first level of entity
 For pagination request "limit" and "offset" is allowed
+For ordering query "order" intended
 
 ### Delete records - action "del"
 
